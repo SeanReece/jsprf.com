@@ -1,0 +1,15 @@
+{
+  "name": "jsprf.com",
+  "private": false,
+  "version": "0.0.1",
+  "description": "A JSPerf replacement",
+  "repository": "https://github.com/seanreece/jsprf.com",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000 -c-1 ."
+  }
+}

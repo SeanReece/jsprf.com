@@ -1,0 +1,29 @@
+<h2>JS Benchmarks</h2>
+<p class="lead">
+    Write some JavaScript here and hit <code>RUN</code> to start a performance benchmark on each script.
+</p>
+<button type="button" class="btn btn-primary btn-lg" ng-click="addScript()"><i class="fa fa-plus"></i></button>
+<div class="text-xs-center">
+    <form class="contact-form row">
+        <div class="col-xs-12" ng-repeat="script in scripts">
+            <div ng-class="{'has-success': script.winner}">
+                <label></label>
+                <div class="row">
+                  <div class="col-xs-11">
+                    <textarea class="form-control form-control-success" rows="4" placeholder="New Script" ng-model="script.content"></textarea>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-sm pull-xs-left" ng-click="removeScript(script)">-</button>
+                  <i ng-if="script.inProgress" class="fa fa-gear fa-2x fa-spin"></i>
+                </div>
+                {{script.results}}
+            </div>
+            <div ng-if="script.error" class="col-xs-11 alert alert-danger" role="alert">
+              <strong>Oh snap!</strong> {{script.message}}
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+            <label></label>
+            <button type="button" ng-disabled="running" class="btn btn-primary btn-block btn-lg" ng-click="runPerfs()">RUN <i ng-if="inProgress" class="fa fa-gear fa-spin"></i></button>
+        </div>
+    </form>
+</div>
