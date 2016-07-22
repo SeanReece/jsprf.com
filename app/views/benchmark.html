@@ -9,21 +9,24 @@
             <div ng-class="{'has-success': script.winner}">
                 <label></label>
                 <div class="row">
-                  <div class="col-xs-11">
+                  <div class="col-sm-11 col-xs-10">
                     <textarea class="form-control form-control-success" rows="4" placeholder="New Script" ng-model="script.content"></textarea>
                   </div>
-                  <button type="button" class="btn btn-primary btn-sm pull-xs-left" ng-click="removeScript(script)">-</button>
-                  <i ng-if="script.inProgress" class="fa fa-gear fa-2x fa-spin"></i>
+                  <div class="col-xs-1">
+                    <button type="button" class="btn btn-primary btn-sm pull-xs-left" ng-click="removeScript(script)">-</button>
+                    <i ng-if="script.inProgress" class="fa fa-gear fa-2x fa-spin"></i>
+                  </div>
                 </div>
                 {{script.results}}
             </div>
-            <div ng-if="script.error" class="col-xs-11 alert alert-danger" role="alert">
-              <strong>Oh snap!</strong> {{script.message}}
+            <div ng-if="script.errorMessage" class="col-xs-12 alert alert-danger" role="alert">
+              <strong>Oh snap!</strong> {{script.errorMessage}}
             </div>
         </div>
         <div class="col-md-4 col-md-offset-4">
             <label></label>
-            <button type="button" ng-disabled="running" class="btn btn-primary btn-block btn-lg" ng-click="runPerfs()">RUN <i ng-if="inProgress" class="fa fa-gear fa-spin"></i></button>
+            <button type="button" ng-hide="inProgress" class="btn btn-primary btn-block btn-lg" ng-click="runPerfs()">RUN</button>
+            <button type="button" ng-if="inProgress" class="btn btn-danger-outline btn-block btn-lg" ng-click="cancelPerfs()">CANCEL <i ng-if="inProgress" class="fa fa-gear fa-spin"></i></button>
         </div>
     </form>
 </div>

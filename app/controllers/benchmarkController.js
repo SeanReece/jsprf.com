@@ -1,6 +1,7 @@
 angular.module('jsprf.controllers')
 
   .controller('benchmarkController', ['$scope', function ($scope) {
+    var benchmarkSuite
     /**
      * Pass in the "winning" benchmarks from the benchmark.js suite and this will mark the winners in $scope.scripts
      * @param  {Array} winningScripts [description]
@@ -13,6 +14,16 @@ angular.module('jsprf.controllers')
           script.winner = !!found
         })
       })
+    }
+    
+    /**
+     * Just remove any properties from the scripts that were added during the last benchmark run
+     */
+    function resetBenchmarks() {
+        $scope.scripts.forEach(function (script){
+            delete script.errorMessage
+            delete script.results
+        })
     }
 
     /**
@@ -38,12 +49,13 @@ angular.module('jsprf.controllers')
      * @return {[type]} [description]
      */
     $scope.runPerfs = function () {
-      var suite = new Benchmark.Suite
+      resetBenchmarks()
+      benchmarkSuite = new Benchmark.Suite
       var count = 1
       // add tests
       $scope.scripts.forEach(function (script) {
         script.name = 'script' + count++
-        suite.add(script.name, script.content, {
+        benchmarkSuite.add(script.name, script.content, {
           onStart: function (event) {
             $scope.$apply(function () {
               script.inProgress = true
@@ -51,8 +63,7 @@ angular.module('jsprf.controllers')
           },
           onError: function (err) {
             $scope.$apply(function () {
-              script.error = true
-              script.message = err.message.message
+              script.errorMessage = err.message.message
             })
           },
           onComplete: function (event) {
@@ -64,7 +75,7 @@ angular.module('jsprf.controllers')
         })
       })
       // add benchmark suite listeners
-      suite
+      benchmarkSuite
         .on('start', function() {
           $scope.inProgress = true
         })
@@ -77,5 +88,9 @@ angular.module('jsprf.controllers')
         })
         // run async
         .run({ 'async': true })
+    }
+    
+    $scope.cancelPerfs = function () {
+        benchmarkSuite.abort()
     }
   }])
