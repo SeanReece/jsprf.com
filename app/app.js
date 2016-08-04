@@ -20,3 +20,6 @@ angular.module('jsprf', [
       controller: "benchmarkController"
     })
 });
+
+angular.module('jsprf.controllers', []);
+angular.module('jsprf.services', []);

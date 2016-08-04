@@ -4,12 +4,19 @@
   "version": "0.0.1",
   "description": "A JSPerf replacement",
   "repository": "https://github.com/seanreece/jsprf.com",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "http-server": "^0.9.0"
+    "http-server": "^0.9.0",
+    "uglify-js": "^2.7.0"
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ."
+    "start": "npm run uglify-dev && http-server -a localhost -p 8000 -c-1 .",
+    "build": "npm run uglify",
+    "uglify-dev": "uglifyjs app/app.js app/**/*.js -o js/jsprf.min.js -b",
+    "uglify": "uglifyjs app/app.js app/**/*.js -o js/jsprf.min.js",
+    "gh-pages-commit": "git add -A . && git commit -a -m 'gh-pages update'",
+    "gh-pages-push": "git push origin gh-pages --force && git checkout master",
+    "deploy": "git stash && git pull && npm run build && npm run gh-pages-commit"
   }
 }
