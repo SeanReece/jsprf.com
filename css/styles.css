@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 html,
 body {
@@ -11,11 +11,6 @@ body {
     color: #001A33;
     webkit-tap-highlight-color: #222;
     top:0;
-}
-
-/* workaround modal-open padding issue */
-body.modal-open {
-    padding-right:0 !important;
 }
 
 hr {
@@ -334,4 +329,55 @@ img::selection {
 img::-moz-selection {
     color: #fff;
     background: 0 0;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.script-container {
+  margin-top: .5rem;
+}
+
+.benchmark-container {
+  padding-top: 20px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.spin::before{
+  font-size: 24px;
+  line-height: 24px;
+  -webkit-animation: spin 2s infinite linear;
+	-moz-animation: spin 2s infinite linear;
+	-ms-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+}
+
+@keyframes "spin" {
+ from { transform: rotate(0deg); }
+ to { transform: rotate(359deg); }
+}
+
+@-moz-keyframes spin {
+ from { -moz-transform: rotate(0deg); }
+ to { -moz-transform: rotate(359deg); }
+}
+
+@-webkit-keyframes "spin" {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(359deg); }
+}
+
+@-ms-keyframes "spin" {
+  from { -ms-transform: rotate(0deg); }
+  to { -ms-transform: rotate(359deg); }
+}
+
+@-o-keyframes "spin" {
+  from { -o-transform: rotate(0deg); }
+  to { -o-transform: rotate(359deg); }
 }

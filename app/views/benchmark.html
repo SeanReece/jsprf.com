@@ -1,32 +1,54 @@
-<h2>JS Benchmarks</h2>
-<p class="lead">
-    Write some JavaScript here and hit <code>RUN</code> to start a performance benchmark on each script.
-</p>
-<button type="button" class="btn btn-primary btn-lg" ng-click="addScript()"><i class="fa fa-plus"></i></button>
-<div class="text-xs-center">
-    <form class="contact-form row">
-        <div class="col-xs-12" ng-repeat="script in scripts">
-            <div ng-class="{'has-success': script.winner}">
-                <label></label>
-                <div class="row">
-                  <div class="col-sm-11 col-xs-10">
-                    <textarea class="form-control form-control-success" rows="4" placeholder="New Script" ng-model="script.content"></textarea>
-                  </div>
-                  <div class="col-xs-1">
-                    <button type="button" class="btn btn-primary btn-sm pull-xs-left" ng-click="removeScript(script)">-</button>
-                    <i ng-if="script.inProgress" class="fa fa-gear fa-2x fa-spin"></i>
-                  </div>
-                </div>
-                {{script.results}}
-            </div>
-            <div ng-if="script.errorMessage" class="col-xs-12 alert alert-danger" role="alert">
-              <strong>Oh snap!</strong> {{script.errorMessage}}
-            </div>
-        </div>
-        <div class="col-md-4 col-md-offset-4">
-            <label></label>
-            <button type="button" ng-hide="inProgress" class="btn btn-primary btn-block btn-lg" ng-click="runPerfs()">RUN</button>
-            <button type="button" ng-if="inProgress" class="btn btn-danger-outline btn-block btn-lg" ng-click="cancelPerfs()">CANCEL <i ng-if="inProgress" class="fa fa-gear fa-spin"></i></button>
-        </div>
-    </form>
+<div class="col-lg-12 text-xs-center">
+    <h2 class="m-t-0 text-primary">benchmark() {...}</h2>
+    <hr class="primary">
+</div>
+<div ng-if="editMode">
+  <p class="lead">
+      Write some JavaScript here and hit <code>RUN</code> to start a performance benchmark on each script.
+  </p>
+  <button type="button" class="btn btn-primary btn-lg" ng-click="addScript()"><i class="ion-plus"></i></button>
+  <div class="row benchmark-container" ng-repeat="script in scripts" ng-class="{'has-success': script.winner, 'has-danger': script.error}">
+    <div class="col-md-4 col-xs-6">
+      <div ng-hide="!script.name || !inProgress && editing" ng-click="editing = true"> <label>{{script.name}}</label> <i class="ion-edit text-muted"></i> </div>
+      <input ng-show="!script.name || !inProgress && editing" ng-blur="editing = false" type="text" class="form-control form-control-sm" placeholder="Script Name" ng-disabled="inProgress" ng-model="script.name" ng-required>
+    </div>
+    <div class="offset-xs-4 offset-md-6 col-xs-2 text-xs-right">
+        <i ng-if="script.inProgress" class="ion-ios-gear-outline spin"></i>
+        <button ng-hide="inProgress" type="button" class="btn btn-outline-danger btn-sm pull-xs-right" ng-click="removeScript(script)">-</button>
+    </div>
+    <div class="col-xs-12 script-container">
+      <textarea type="text" class="form-control form-control-success form-control-danger" rows="4" placeholder="New Script" ng-model="script.content" ng-disabled="inProgress"></textarea>
+      <div class="form-control-feedback">{{script.error}}</div>
+    </div>
+  </div>
+</div>
+<div ng-if="!editMode">
+  <p class="lead">
+      Hit <code>RUN</code> to start a performance benchmark on each script.
+  </p>
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Benchmark</th>
+        <th>Code</th>
+        <th>Ops/sec</th>
+        <th>Relative</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="script in scripts">
+      <tr ng-class="{'table-success': script.winner, 'table-warning': script.loser, 'table-danger': script.error}">
+        <th scope="row">{{script.name}}</th>
+        <td><pre>{{script.content}}</pre></td>
+        <td>{{script.ops}}</td>
+        <td>{{script.factor}}<i ng-if="script.inProgress" class="ion-ios-gear-outline spin"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="m-x-auto action-buttons row text-xs-center">
+  <button type="button" ng-hide="inProgress" class="btn btn-primary btn-lg btn-block" ng-click="runPerfs()">benchmarks.<strong>run</strong>()</button>
+  <button type="button" ng-if="inProgress" class="btn btn-danger-outline btn-block btn-lg" ng-click="cancelPerfs()">benchmarks.<strong>cancel</strong>()</button>
+</div>
+<div class="m-x-auto action-buttons row text-xs-center">
+  <button type="button" ng-if="!inProgress && !editMode" class="btn btn-outline-secondary" ng-click="switchToEdit()">Edit <i class="ion-edit"></i></button>
 </div>

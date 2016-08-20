@@ -15,8 +15,9 @@
     "build": "npm run uglify",
     "uglify-dev": "uglifyjs app/app.js app/**/*.js -o js/jsprf.min.js -b",
     "uglify": "uglifyjs app/app.js app/**/*.js -o js/jsprf.min.js",
+    "gh-pages-update": "git stash && git checkout gh-pages && git rebase origin/master",
     "gh-pages-commit": "git add -A . && git commit -a -m 'gh-pages update'",
-    "gh-pages-push": "git push origin gh-pages --force && git checkout master",
-    "deploy": "git stash && git pull && npm run build && npm run gh-pages-commit"
+    "gh-pages-push": "git push -f && git checkout master",
+    "deploy": "npm run gh-pages-update && npm run build && npm run gh-pages-commit && npm run gh-pages-push"
   }
 }
