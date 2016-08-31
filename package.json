@@ -6,18 +6,14 @@
   "repository": "https://github.com/seanreece/jsprf.com",
   "license": "Apache-2.0",
   "devDependencies": {
-    "http-server": "^0.9.0",
-    "uglify-js": "^2.7.0"
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-webserver": "^0.9.1"
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "npm run uglify-dev && http-server -a localhost -p 8000 -c-1 .",
-    "build": "npm run uglify",
-    "uglify-dev": "uglifyjs app/app.js app/**/*.js -o js/jsprf.min.js -b",
-    "uglify": "uglifyjs app/app.js app/**/*.js -o js/jsprf.min.js",
-    "gh-pages-update": "git stash && git checkout gh-pages && git rebase origin/master",
-    "gh-pages-commit": "git add -A . && git commit -a -m 'gh-pages update'",
-    "gh-pages-push": "git push -f && git checkout master",
-    "deploy": "npm run gh-pages-update && npm run build && npm run gh-pages-commit && npm run gh-pages-push"
+    "start": "gulp"
   }
 }
