@@ -47,9 +47,9 @@ angular.module('jsprf.controllers')
      * @type {Array}
      */
     $scope.scripts = [
-      {content: "/o/.test('Hello World!');", name: "script1"},
-      {content: "'Hello World!'.indexOf('o') > -1;", name: "script2"},
-      {content: "!!'Hello World!'.match(/o/);", name: "script3"}
+      {content: "/o/.test('Hello World!');", name: "RegExp#test"},
+      {content: "'Hello World!'.indexOf('o') > -1;", name: "String#indexOf"},
+      {content: "!!'Hello World!'.match(/o/);", name: "String#match"}
     ]
 
     $scope.addScript = function () {
