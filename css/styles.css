@@ -381,3 +381,8 @@ label {
   from { -o-transform: rotate(0deg); }
   to { -o-transform: rotate(359deg); }
 }
+
+.force-monospace {
+  font-family: Consolas,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono",
+  "Bitstream Vera Sans Mono","Courier New",monospace
+}

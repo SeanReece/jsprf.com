@@ -17,7 +17,7 @@
         <button ng-hide="inProgress" type="button" class="btn btn-outline-danger btn-sm pull-xs-right" ng-click="removeScript(script)">-</button>
     </div>
     <div class="col-xs-12 script-container">
-      <textarea type="text" class="form-control form-control-success form-control-danger" rows="4" placeholder="New Script" ng-model="script.content" ng-disabled="inProgress"></textarea>
+      <textarea type="text" class="form-control form-control-success form-control-danger force-monospace" rows="4" placeholder="New Script" ng-model="script.content" ng-disabled="inProgress"></textarea>
       <div class="form-control-feedback">{{script.error}}</div>
     </div>
   </div>
