@@ -1,19 +1,25 @@
 {
-  "name": "jsprf.com",
-  "private": false,
-  "version": "0.0.1",
-  "description": "A JSPerf replacement",
-  "repository": "https://github.com/seanreece/jsprf.com",
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^2.0.0",
-    "gulp-webserver": "^0.9.1"
+  "name": "jsprf",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
   },
   "scripts": {
-    "prestart": "npm install",
-    "start": "gulp"
-  }
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
