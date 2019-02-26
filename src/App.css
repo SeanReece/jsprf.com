@@ -45,9 +45,10 @@
 
 .editors {
   flex: 3;
-  background: #1e1e1e;
+  background: #252525;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid #1e1e1e;
 }
 
 .info {

@@ -27,7 +27,7 @@ function FileList({
         {setup && (
           <li key="setup" className="filelist__item">
             <img src={jsIcon} className="filelist__item__icon" alt="js icon" />
-            <span className="filelist__item__title">Setup.js</span>
+            <span className="filelist__item__title">{setup.name}</span>
             <IoMdClose className="filelist__item__close" onClick={() => onRemoveScript(setup.id)} />
           </li>
         )}

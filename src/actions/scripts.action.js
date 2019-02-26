@@ -21,7 +21,7 @@ export const addSetup = (value) => {
     type: ADD_SCRIPT,
     payload: {
       id: SETUP_ID,
-      name: 'setup',
+      name: 'Setup.js',
       value: value || DEFAULT_SETUP
     }
   }

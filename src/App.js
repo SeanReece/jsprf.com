@@ -50,6 +50,7 @@ class App extends Component {
             {setup && (
               <Editor
                 key="setup"
+                name={setup.name}
                 defaultValue={setup.value}
                 onChange={value => updateScript(setup.id, { value })}
                 disabled={inProgress}
@@ -58,6 +59,7 @@ class App extends Component {
             {Object.values(scripts).map(script => (
               <Editor
                 key={script.id}
+                name={script.name}
                 defaultValue={script.value}
                 onChange={value => updateScript(script.id, { value })}
                 benchmark={script.result}

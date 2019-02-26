@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import * as monaco from 'monaco-editor'
+import jsIcon from '../../images/js.svg'
 import './Editor.css'
 
-function Editor({ onChange, defaultValue, disabled }) {
+function Editor({ name, onChange, defaultValue, disabled }) {
   const [editorInstance, setEditorInstance] = useState()
   const editorElement = useRef()
 
@@ -12,13 +13,6 @@ function Editor({ onChange, defaultValue, disabled }) {
       value: defaultValue,
       language: 'javascript',
       automaticLayout: true,
-      // scrollbar: {
-      //   vertical: 'visible',
-      //   // Render horizontal scrollbar.
-      //   // Accepted values: 'auto', 'visible', 'hidden'.
-      //   // Defaults to 'auto'
-      //   horizontal: 'visible',
-      // },
     })
 
     monaco.editor.setTheme('vs-dark')
@@ -38,10 +32,19 @@ function Editor({ onChange, defaultValue, disabled }) {
     width: '100%',
     height: '33%',
   }
-  return <div ref={editorElement} style={style} className="editor" />
+  return (
+    <>
+      <div className="editor-tab">
+        <img src={jsIcon} className="filelist__item__icon" alt="js icon" />
+        <span className="editor-tab__title">{name}</span>
+      </div>
+      <div ref={editorElement} style={style} className="editor" />
+    </>
+  )
 }
 
 Editor.propTypes = {
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   defaultValue: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
