@@ -16,9 +16,9 @@ import logo from './images/jsprf_logo.png'
 class App extends Component {
   componentDidMount() {
     this.props.addSetup('// Setup your scripts here\nconst myString = \'Hello World!\'')
-    this.props.addScript('// Write code to benchmark here\nRegExp#test', '/o/.test(myString);')
-    this.props.addScript('// Write code to benchmark here\nString#indexOf', 'myString.indexOf(\'o\') > -1;')
-    this.props.addScript('// Write code to benchmark here\nString#match', '!!myString.match(/o/);')
+    this.props.addScript('RegExp#test', '// Write code to benchmark here\n/o/.test(myString);')
+    this.props.addScript('String#indexOf', '// Write code to benchmark here\nmyString.indexOf(\'o\') > -1;')
+    this.props.addScript('String#match', '// Write code to benchmark here\n!!myString.match(/o/);')
   }
 
   render() {
