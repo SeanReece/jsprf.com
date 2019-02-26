@@ -1,11 +1,16 @@
 import { SETUP_ID, DEFAULT_SETUP, DEFAULT_SCRIPT } from '../util/scriptDefaults'
 import { generateId } from '../util'
+import ReactGA from 'react-ga'
 
 export const ADD_SCRIPT = 'ADD_SCRIPT'
 export const REMOVE_SCRIPT = 'REMOVE_SCRIPT'
 export const UPDATE_SCRIPT = 'UPDATE_SCRIPT'
 
 export const addScript = (name, value) => {
+  ReactGA.event({
+    category: 'script',
+    action: 'create'
+  });
   return {
     type: ADD_SCRIPT,
     payload: {
@@ -17,6 +22,10 @@ export const addScript = (name, value) => {
 }
 
 export const addSetup = (value) => {
+  ReactGA.event({
+    category: 'script',
+    action: 'create'
+  });
   return {
     type: ADD_SCRIPT,
     payload: {
@@ -28,6 +37,10 @@ export const addSetup = (value) => {
 }
 
 export const removeScript = (id) => {
+  ReactGA.event({
+    category: 'script',
+    action: 'remove'
+  });
   return {
     type: REMOVE_SCRIPT,
     payload: {

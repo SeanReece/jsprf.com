@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import process from 'process'
+import ReactGA from 'react-ga'
 import { getSetupScript, getScripts } from '../selectors/scripts.selector'
 
 const Benchmark = require('benchmark').runInContext({ _, process })
@@ -17,6 +18,12 @@ export const startBenchmark = () => async (dispatch, getState) => {
   const state = getState()
   const scripts = getScripts(state)
   const setup = getSetupScript(state)
+
+  ReactGA.event({
+    category: 'benchmark',
+    action: 'start',
+    value: scripts.length
+  });
 
   dispatch({ type: BENCHMARK_START })
 

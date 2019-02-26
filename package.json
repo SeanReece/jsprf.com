@@ -54,6 +54,7 @@
     "react-app-polyfill": "^0.2.1",
     "react-dev-utils": "^7.0.3",
     "react-dom": "^16.8.1",
+    "react-ga": "^2.5.7",
     "react-icons": "^3.4.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",

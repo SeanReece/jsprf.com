@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga'
+
 export const ADD_DEPENDANCY_REQUEST = 'ADD_DEPENDANCY_REQUEST'
 export const ADD_DEPENDANCY_SUCCESS = 'ADD_DEPENDANCY_SUCCESS'
 export const ADD_DEPENDANCY_FAILURE = 'ADD_DEPENDANCY_FAILURE'
@@ -12,6 +14,11 @@ export const addDependancy = (name) => async (dispatch) => {
   if (global[name]) {
     return
   }
+  ReactGA.event({
+    category: 'dependancy',
+    action: 'add',
+    label: name
+  });
   try {
     dispatch({
       type: ADD_DEPENDANCY_REQUEST,
@@ -44,6 +51,10 @@ export const addDependancy = (name) => async (dispatch) => {
 }
 
 export const removeDependancy = (name) => {
+  ReactGA.event({
+    category: 'dependancy',
+    action: 'remove'
+  });
   delete global[name]
   return {
     type: REMOVE_DEPENDANCY,
