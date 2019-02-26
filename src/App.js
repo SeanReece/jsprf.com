@@ -15,10 +15,10 @@ import logo from './images/jsprf_logo.png'
 
 class App extends Component {
   componentDidMount() {
-    this.props.addSetup('// Setup your scripts here\nconst a = [1,2,3]')
-    this.props.addScript('RegExp#test', '/o/.test(\'Hello World!\');')
-    this.props.addScript('String#indexOf', '\'Hello World!\'.indexOf(\'o\') > -1;')
-    this.props.addScript('String#match', '!!\'Hello World!\'.match(/o/);')
+    this.props.addSetup('// Setup your scripts here\nconst myString = \'Hello World!\'')
+    this.props.addScript('RegExp#test', '/o/.test(myString);')
+    this.props.addScript('String#indexOf', 'myString.indexOf(\'o\') > -1;')
+    this.props.addScript('String#match', '!!myString.match(/o/);')
   }
 
   render() {
