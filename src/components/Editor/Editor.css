@@ -1,0 +1,17 @@
+.editor {
+  flex: 1;
+  resize: vertical;
+  overflow: hidden;
+}
+
+.editor-tab {
+  align-self: flex-start;
+  display: flex;
+  background-color: #1e1e1e;
+  margin-top: 1px;
+  padding: 8px 12px;
+}
+
+/* .editor-tab__title {
+  flex: auto;
+} */
