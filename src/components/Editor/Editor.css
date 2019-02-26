@@ -1,0 +1,5 @@
+.editor {
+  flex: 1;
+  resize: vertical;
+  overflow: hidden;
+}

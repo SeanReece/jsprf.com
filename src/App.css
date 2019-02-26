@@ -1,0 +1,126 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex: 0 0 40px;
+  background-color: #3c3c3c;
+  align-items: center;
+}
+
+.header__logo {
+  height: 30px;
+  margin: 4px;
+}
+
+.header__title {
+  margin-left: 8px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.header__subtitle {
+  margin-left: 12px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #252525;
+}
+
+.fileList {
+  flex: 0 0 100%;
+}
+
+.editors {
+  flex: 3;
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: #252525;
+}
+
+.footer {
+  display: flex;
+  flex: 0 0 40px;
+  align-items: center;
+}
+
+.footer__plug {
+  margin-left: 8px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+.loader {
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.benchmark-start__button {
+  background-color: #0277CF;
+  border: none;
+  padding: 10px 30px;
+  font-size: 1.3em;
+  color: #ffffff;
+  margin: 5px auto 0 auto;
+  /* cursor: pointer; */
+}
+
+.benchmark-start__button:hover {
+  background-color: #1b84d3;
+}

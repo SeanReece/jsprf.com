@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body,
+input {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #3c3c3c;
+}
+
+input {
+  padding-left: 2px;
+  border: none;
+  outline: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
