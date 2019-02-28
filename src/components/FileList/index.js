@@ -7,7 +7,7 @@ import depIcon from '../../images/dependancy.svg'
 import loadingIcon from '../../images/loading.svg'
 
 function FileList({
-  setup, scripts, dependancies, onAddScript, onRemoveScript, onUpdateScript, onAddSetup, onAddDependancy, onRemoveDependancy,
+  setup, scripts, dependencies, onAddScript, onRemoveScript, onUpdateScript, onAddSetup, onAddDependancy, onRemoveDependancy,
 }) {
   const depInput = useRef()
 
@@ -43,10 +43,10 @@ function FileList({
             <IoMdClose className="filelist__item__close" onClick={() => onRemoveScript(script.id)} />
           </li>
         ))}
-        <li key="dependancies-header" className="filelist__item__header">
-          <span className="filelist__item__header__title">dependancies</span>
+        <li key="dependencies-header" className="filelist__item__header">
+          <span className="filelist__item__header__title">dependencies</span>
         </li>
-        {Object.values(dependancies).map(dep => (
+        {Object.values(dependencies).map(dep => (
           <li key={dep.name} className="filelist__item">
             <img src={depIcon} className="filelist__item__icon" alt="js icon" />
             <span className="filelist__item__title">{dep.name}</span>
@@ -57,7 +57,7 @@ function FileList({
           </li>
         ))}
         <form onSubmit={handleDepSubmit}>
-          <input type="text" className="filelist__dependancy__input" ref={depInput} placeholder="Search dependancies" />
+          <input type="text" className="filelist__dependancy__input" ref={depInput} placeholder="Search dependencies" />
         </form>
       </ul>
     </React.Fragment>
@@ -67,7 +67,7 @@ function FileList({
 FileList.propTypes = {
   setup: PropTypes.shape({}),
   scripts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dependancies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dependencies: PropTypes.arrayOf(PropTypes.object).isRequired,
   onAddScript: PropTypes.func.isRequired,
   onRemoveScript: PropTypes.func.isRequired,
   onAddDependancy: PropTypes.func.isRequired,

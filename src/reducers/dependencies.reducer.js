@@ -1,4 +1,4 @@
-import { ADD_DEPENDANCY_REQUEST, ADD_DEPENDANCY_SUCCESS, ADD_DEPENDANCY_FAILURE, REMOVE_DEPENDANCY } from '../actions/dependancies.action'
+import { ADD_DEPENDANCY_REQUEST, ADD_DEPENDANCY_SUCCESS, ADD_DEPENDANCY_FAILURE, REMOVE_DEPENDANCY } from '../actions/dependencies.action'
 
 const initialState = []
 

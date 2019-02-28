@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import process from 'process'
 import ReactGA from 'react-ga'
+import { transform, createConfigItem } from "@babel/core"
+import presetEnv from '@babel/preset-env'
 import { getSetupScript, getScripts } from '../selectors/scripts.selector'
 
 const Benchmark = require('benchmark').runInContext({ _, process })
@@ -28,9 +30,18 @@ export const startBenchmark = () => async (dispatch, getState) => {
   dispatch({ type: BENCHMARK_START })
 
   scripts.forEach(script => {
-    const bench = suite.add(script.name, script.value, {
+    let transCode
+    let setupTransCode
+    try {
+      transCode = transform(script.value, {presets: [createConfigItem(presetEnv)]})
+      setupTransCode = transform(setup.value, {presets: [createConfigItem(presetEnv)]})
+    } catch (error) {
+      dispatch({ type: SCRIPT_BENCHMARK_ERROR, payload: { id: script.id, error } })
+    }
+
+    const bench = suite.add(script.name, transCode ? transCode.code : script.value, {
       id: script.id,
-      setup: setup && setup.value,
+      setup: setupTransCode ? setupTransCode.code: setup.value,
       onStart: () => {
         dispatch({ type: SCRIPT_BENCHMARK_START, payload: { id: script.id } })
       },

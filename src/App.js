@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { addSetup, addScript, removeScript, updateScript } from './actions/scripts.action'
-import { addDependancy, removeDependancy } from './actions/dependancies.action'
+import { addDependancy, removeDependancy } from './actions/dependencies.action'
 import { startBenchmark } from './actions/bench.action'
 import { getSetupScript, getScripts } from './selectors/scripts.selector'
 import { isBenchmarkingInProgress } from './selectors/bench.selector'
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   render() {
-    const { setup, scripts, dependancies, addSetup, addScript, removeScript, updateScript, addDependancy, removeDependancy, startBenchmark, inProgress } = this.props
+    const { setup, scripts, dependencies, addSetup, addScript, removeScript, updateScript, addDependancy, removeDependancy, startBenchmark, inProgress } = this.props
     return (
       <div className="app">
         <div className="header">
@@ -36,7 +36,7 @@ class App extends Component {
               <FileList
                 setup={setup}
                 scripts={scripts}
-                dependancies={dependancies}
+                dependencies={dependencies}
                 onAddSetup={addSetup}
                 onAddScript={addScript}
                 onRemoveScript={removeScript}
@@ -84,7 +84,7 @@ const mapStateToProps = (state) => {
   return {
     setup: getSetupScript(state),
     scripts: getScripts(state),
-    dependancies: state.dependancies,
+    dependencies: state.dependencies,
     inProgress: isBenchmarkingInProgress(state),
   }
 }
