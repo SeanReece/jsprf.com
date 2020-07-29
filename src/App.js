@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { IoMdDocument, IoMdSettings } from 'react-icons/io'
 
 import { addSetup, addScript, removeScript, updateScript } from './actions/scripts.action'
-import { addDependancy, removeDependancy } from './actions/dependancies.action'
+import { addDependency, removeDependency } from './actions/dependencies.action'
 import { startBenchmark } from './actions/bench.action'
 import { getSetupScript, getScripts } from './selectors/scripts.selector'
 import { isBenchmarkingInProgress } from './selectors/bench.selector'
@@ -10,10 +11,22 @@ import { isBenchmarkingInProgress } from './selectors/bench.selector'
 import Editor from './components/Editor'
 import BenchResults from './components/BenchResults'
 import FileList from './components/FileList'
+import Settings from './components/Settings'
+
 import './App.css'
 import logo from './images/jsprf_logo.png'
 
+
+const NAV_BUTTONS = {
+  FILES: 'files',
+  SETTINGS: 'settings'
+}
+
 class App extends Component {
+  state = {
+    selected: NAV_BUTTONS.FILES
+  }
+
   componentDidMount() {
     this.props.addSetup('// Setup your scripts here\nconst myString = \'Hello World!\'')
     this.props.addScript('RegExp#test', '// Write code to benchmark here\n/o/.test(myString);')
@@ -22,29 +35,48 @@ class App extends Component {
   }
 
   render() {
-    const { setup, scripts, dependancies, addSetup, addScript, removeScript, updateScript, addDependancy, removeDependancy, startBenchmark, inProgress } = this.props
+    const { setup, scripts, dependencies, addSetup, addScript, removeScript, updateScript, addDependency, removeDependency, startBenchmark, inProgress } = this.props
     return (
       <div className="app">
         <div className="header">
           <img src={logo} className="header__logo" alt="logo" />
-          {/* <span className="header__title">JSprf</span> */}
-          {/* <span className="header__subtitle">Javascript Benchmarking tool</span> */}
+          <span className="header__title">JSprf</span>
+          <span className="header__subtitle">Javascript Benchmarking tool</span>
         </div>
         <div className="content">
           <div className="sidebar">
+            <div className="navigate">
+              <div 
+                className={`navigate__icon ${this.state.selected === NAV_BUTTONS.FILES ? 'selected' : ''}`} 
+                onClick={() => this.setState({selected: NAV_BUTTONS.FILES})}>
+                  <IoMdDocument />
+              </div>
+              <div 
+                className={`navigate__icon ${this.state.selected === NAV_BUTTONS.SETTINGS ? 'selected' : ''}`} 
+                onClick={() => this.setState({selected: NAV_BUTTONS.SETTINGS})}>
+                  <IoMdSettings />
+              </div>
+            </div>
+            {this.state.selected === NAV_BUTTONS.FILES &&
             <div className="fileList">
               <FileList
                 setup={setup}
                 scripts={scripts}
-                dependancies={dependancies}
+                dependencies={dependencies}
                 onAddSetup={addSetup}
                 onAddScript={addScript}
                 onRemoveScript={removeScript}
                 onUpdateScript={updateScript}
-                onAddDependancy={addDependancy}
-                onRemoveDependancy={removeDependancy}
+                onAddDependency={addDependency}
+                onRemoveDependency={removeDependency}
               />
             </div>
+            }
+            {this.state.selected === NAV_BUTTONS.SETTINGS &&
+            <div className="settings">
+              <Settings />
+            </div>
+            }
           </div>
           <div className="editors">
             {setup && (
@@ -84,7 +116,7 @@ const mapStateToProps = (state) => {
   return {
     setup: getSetupScript(state),
     scripts: getScripts(state),
-    dependancies: state.dependancies,
+    dependencies: state.dependencies,
     inProgress: isBenchmarkingInProgress(state),
   }
 }
@@ -96,8 +128,8 @@ export default connect(
     addScript,
     removeScript,
     updateScript,
-    addDependancy,
-    removeDependancy,
+    addDependency,
+    removeDependency,
     startBenchmark
   }
 )(App)

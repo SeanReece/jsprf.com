@@ -1,27 +1,27 @@
 import ReactGA from 'react-ga'
 
-export const ADD_DEPENDANCY_REQUEST = 'ADD_DEPENDANCY_REQUEST'
-export const ADD_DEPENDANCY_SUCCESS = 'ADD_DEPENDANCY_SUCCESS'
-export const ADD_DEPENDANCY_FAILURE = 'ADD_DEPENDANCY_FAILURE'
+export const ADD_DEPENDENCY_REQUEST = 'ADD_DEPENDENCY_REQUEST'
+export const ADD_DEPENDENCY_SUCCESS = 'ADD_DEPENDENCY_SUCCESS'
+export const ADD_DEPENDENCY_FAILURE = 'ADD_DEPENDENCY_FAILURE'
 
-export const REMOVE_DEPENDANCY = 'REMOVE_DEPENDANCY'
+export const REMOVE_DEPENDENCY = 'REMOVE_DEPENDENCY'
 
-const findDependancyVersion = (dep) => {
+const findDependencyVersion = (dep) => {
   return dep.VERSION || dep.version || dep.Version || dep.v
 }
 
-export const addDependancy = (name) => async (dispatch) => {
+export const addDependency = (name) => async (dispatch) => {
   if (global[name]) {
     return
   }
   ReactGA.event({
-    category: 'dependancy',
+    category: 'dependency',
     action: 'add',
     label: name
   });
   try {
     dispatch({
-      type: ADD_DEPENDANCY_REQUEST,
+      type: ADD_DEPENDENCY_REQUEST,
       payload: {
         name
       }
@@ -30,18 +30,18 @@ export const addDependancy = (name) => async (dispatch) => {
     if (depExport) {
       global[name] = depExport
       dispatch({
-        type: ADD_DEPENDANCY_SUCCESS,
+        type: ADD_DEPENDENCY_SUCCESS,
         payload: {
           name,
-          version: findDependancyVersion(depExport)
+          version: findDependencyVersion(depExport)
         }
       })
     } else {
-      throw new Error('Dependancy not found')
+      throw new Error('Dependency not found')
     }
   } catch (error) {
     dispatch({
-      type: ADD_DEPENDANCY_FAILURE,
+      type: ADD_DEPENDENCY_FAILURE,
       payload: {
         name,
         error
@@ -50,14 +50,14 @@ export const addDependancy = (name) => async (dispatch) => {
   }
 }
 
-export const removeDependancy = (name) => {
+export const removeDependency = (name) => {
   ReactGA.event({
-    category: 'dependancy',
+    category: 'dependency',
     action: 'remove'
   });
   delete global[name]
   return {
-    type: REMOVE_DEPENDANCY,
+    type: REMOVE_DEPENDENCY,
     payload: {
       name
     }

@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Prism from 'prismjs'
-import domtoimage from 'dom-to-image'
 
 import { isBenchmarkingInProgress, getAllBenchmarks, getFastestBenchmarks, getSlowestBenchmarks } from '../../selectors/bench.selector'
 import { formatOPS } from '../../util'
@@ -13,20 +12,12 @@ class BenchResults extends React.Component {
   myRef = React.createRef();
   componentDidUpdate(){
     Prism.highlightAll()
-    domtoimage.toPng(this.myRef.current)
-    .then(function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-    })
-    .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-    });
   }
 
   renderItem = (bench, fastest, slowest) => {
     const fast = fastest.some(f => f.id === bench.id)
     const slow = slowest.some(f => f.id === bench.id)
+
 
     return (
       <div className="wrap-collabsible">
@@ -34,7 +25,9 @@ class BenchResults extends React.Component {
         <label htmlFor={`collapsible-${bench.id}`} className={`lbl-toggle ${fast && 'lbl-toggle--fast'} ${slow && 'lbl-toggle--slow'}`}>
           <span className="results">
             <span className="results__name">{bench.data.name}</span>
+            {fast && <span className="results__factor"> ({(bench.data.hz / slowest[0].hz).toFixed(2) + "x faster"}) </span>}
             <span className="results__ops">{formatOPS(bench.data)}</span>
+
             {bench.inProgress && <div className="loader results__loading"></div> }
           </span>
         </label>
@@ -72,7 +65,7 @@ BenchResults.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    dependancies: state.dependancies,
+    dependencies: state.dependencies,
     inProgress: isBenchmarkingInProgress(state),
     benchmarks: getAllBenchmarks(state),
     fastestBenchmarks: getFastestBenchmarks(state),
