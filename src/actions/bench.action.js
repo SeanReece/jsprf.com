@@ -4,6 +4,7 @@ import ReactGA from 'react-ga'
 import { transform, createConfigItem } from "@babel/core"
 import presetEnv from '@babel/preset-env'
 import { getSetupScript, getScripts } from '../selectors/scripts.selector'
+import { shouldTranspile } from '../selectors/settings.selector'
 
 const Benchmark = require('benchmark').runInContext({ _, process })
 window.Benchmark = Benchmark
@@ -20,6 +21,7 @@ export const startBenchmark = () => async (dispatch, getState) => {
   const state = getState()
   const scripts = getScripts(state)
   const setup = getSetupScript(state)
+  const shouldTranspileSetting = shouldTranspile(state)
 
   ReactGA.event({
     category: 'benchmark',
@@ -32,13 +34,14 @@ export const startBenchmark = () => async (dispatch, getState) => {
   scripts.forEach(script => {
     let transCode
     let setupTransCode
-    try {
-      transCode = transform(script.value, {presets: [createConfigItem(presetEnv)]})
-      setupTransCode = transform(setup.value, {presets: [createConfigItem(presetEnv)]})
-    } catch (error) {
-      dispatch({ type: SCRIPT_BENCHMARK_ERROR, payload: { id: script.id, error } })
+    if (shouldTranspileSetting) {
+      try {
+        transCode = transform(script.value, {presets: [createConfigItem(presetEnv)]})
+        setupTransCode = transform(setup.value, {presets: [createConfigItem(presetEnv)]})
+      } catch (error) {
+        dispatch({ type: SCRIPT_BENCHMARK_ERROR, payload: { id: script.id, error } })
+      }
     }
-
     const bench = suite.add(script.name, transCode ? transCode.code : script.value, {
       id: script.id,
       setup: setupTransCode ? setupTransCode.code: setup.value,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { IoMdDocument, IoMdSettings } from 'react-icons/io'
 
 import { addSetup, addScript, removeScript, updateScript } from './actions/scripts.action'
 import { addDependancy, removeDependancy } from './actions/dependencies.action'
@@ -10,10 +11,22 @@ import { isBenchmarkingInProgress } from './selectors/bench.selector'
 import Editor from './components/Editor'
 import BenchResults from './components/BenchResults'
 import FileList from './components/FileList'
+import Settings from './components/Settings'
+
 import './App.css'
 import logo from './images/jsprf_logo.png'
 
+
+const NAV_BUTTONS = {
+  FILES: 'files',
+  SETTINGS: 'settings'
+}
+
 class App extends Component {
+  state = {
+    selected: NAV_BUTTONS.FILES
+  }
+
   componentDidMount() {
     this.props.addSetup('// Setup your scripts here\nconst myString = \'Hello World!\'')
     this.props.addScript('RegExp#test', '// Write code to benchmark here\n/o/.test(myString);')
@@ -27,11 +40,24 @@ class App extends Component {
       <div className="app">
         <div className="header">
           <img src={logo} className="header__logo" alt="logo" />
-          {/* <span className="header__title">JSprf</span> */}
-          {/* <span className="header__subtitle">Javascript Benchmarking tool</span> */}
+          <span className="header__title">JSprf</span>
+          <span className="header__subtitle">Javascript Benchmarking tool</span>
         </div>
         <div className="content">
           <div className="sidebar">
+            <div className="navigate">
+              <div 
+                className={`navigate__icon ${this.state.selected === NAV_BUTTONS.FILES ? 'selected' : ''}`} 
+                onClick={() => this.setState({selected: NAV_BUTTONS.FILES})}>
+                  <IoMdDocument />
+              </div>
+              <div 
+                className={`navigate__icon ${this.state.selected === NAV_BUTTONS.SETTINGS ? 'selected' : ''}`} 
+                onClick={() => this.setState({selected: NAV_BUTTONS.SETTINGS})}>
+                  <IoMdSettings />
+              </div>
+            </div>
+            {this.state.selected === NAV_BUTTONS.FILES &&
             <div className="fileList">
               <FileList
                 setup={setup}
@@ -45,6 +71,12 @@ class App extends Component {
                 onRemoveDependancy={removeDependancy}
               />
             </div>
+            }
+            {this.state.selected === NAV_BUTTONS.SETTINGS &&
+            <div className="settings">
+              <Settings />
+            </div>
+            }
           </div>
           <div className="editors">
             {setup && (
