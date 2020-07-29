@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { IoMdDocument, IoMdSettings } from 'react-icons/io'
 
 import { addSetup, addScript, removeScript, updateScript } from './actions/scripts.action'
-import { addDependancy, removeDependancy } from './actions/dependencies.action'
+import { addDependency, removeDependency } from './actions/dependencies.action'
 import { startBenchmark } from './actions/bench.action'
 import { getSetupScript, getScripts } from './selectors/scripts.selector'
 import { isBenchmarkingInProgress } from './selectors/bench.selector'
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   render() {
-    const { setup, scripts, dependencies, addSetup, addScript, removeScript, updateScript, addDependancy, removeDependancy, startBenchmark, inProgress } = this.props
+    const { setup, scripts, dependencies, addSetup, addScript, removeScript, updateScript, addDependency, removeDependency, startBenchmark, inProgress } = this.props
     return (
       <div className="app">
         <div className="header">
@@ -67,8 +67,8 @@ class App extends Component {
                 onAddScript={addScript}
                 onRemoveScript={removeScript}
                 onUpdateScript={updateScript}
-                onAddDependancy={addDependancy}
-                onRemoveDependancy={removeDependancy}
+                onAddDependency={addDependency}
+                onRemoveDependency={removeDependency}
               />
             </div>
             }
@@ -128,8 +128,8 @@ export default connect(
     addScript,
     removeScript,
     updateScript,
-    addDependancy,
-    removeDependancy,
+    addDependency,
+    removeDependency,
     startBenchmark
   }
 )(App)

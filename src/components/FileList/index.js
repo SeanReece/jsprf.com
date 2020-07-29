@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 import './FileList.css'
 import { IoMdClose, IoMdAdd } from 'react-icons/io'
 import jsIcon from '../../images/js.svg'
-import depIcon from '../../images/dependancy.svg'
+import depIcon from '../../images/dependency.svg'
 import loadingIcon from '../../images/loading.svg'
 
 function FileList({
-  setup, scripts, dependencies, onAddScript, onRemoveScript, onUpdateScript, onAddSetup, onAddDependancy, onRemoveDependancy,
+  setup, scripts, dependencies, onAddScript, onRemoveScript, onUpdateScript, onAddSetup, onAddDependency, onRemoveDependency,
 }) {
   const depInput = useRef()
 
   const handleDepSubmit = (e) => {
     e.preventDefault();
-    onAddDependancy(depInput.current.value)
+    onAddDependency(depInput.current.value)
     depInput.current.value = ""
   }
 
@@ -53,11 +53,11 @@ function FileList({
             <span className="filelist__item__version">{dep.version}</span>
             {dep.error && <span className="filelist__item__error">Not Found</span>}
             {dep.isLoading && <img src={loadingIcon} className="filelist__item__loading" alt="Loading icon" />}
-            {!dep.isLoading && <IoMdClose className="filelist__item__close" onClick={() => onRemoveDependancy(dep.name)} />}
+            {!dep.isLoading && <IoMdClose className="filelist__item__close" onClick={() => onRemoveDependency(dep.name)} />}
           </li>
         ))}
         <form onSubmit={handleDepSubmit}>
-          <input type="text" className="filelist__dependancy__input" ref={depInput} placeholder="Search dependencies" />
+          <input type="text" className="filelist__dependency__input" ref={depInput} placeholder="Search dependencies" />
         </form>
       </ul>
     </React.Fragment>
@@ -70,8 +70,8 @@ FileList.propTypes = {
   dependencies: PropTypes.arrayOf(PropTypes.object).isRequired,
   onAddScript: PropTypes.func.isRequired,
   onRemoveScript: PropTypes.func.isRequired,
-  onAddDependancy: PropTypes.func.isRequired,
-  onRemoveDependancy: PropTypes.func.isRequired,
+  onAddDependency: PropTypes.func.isRequired,
+  onRemoveDependency: PropTypes.func.isRequired,
 }
 
 FileList.defaultProps = {
