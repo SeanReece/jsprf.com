@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { IoMdDocument, IoMdSettings } from 'react-icons/io'
+import { IoMdDocument, IoMdSettings, IoLogoGithub } from 'react-icons/io'
 
 import { addSetup, addScript, removeScript, updateScript } from './actions/scripts.action'
 import { addDependency, removeDependency } from './actions/dependencies.action'
@@ -41,7 +41,8 @@ class App extends Component {
         <div className="header">
           <img src={logo} className="header__logo" alt="logo" />
           <span className="header__title">JSprf</span>
-          <span className="header__subtitle">Javascript Benchmarking tool</span>
+          {/* <span className="header__subtitle">Javascript Benchmarking tool</span> */}
+          <a href="https://github.com/seanreece/jsprf.com" target="_blank" className="header__button"><IoLogoGithub className="header__button__icon"/>GITHUB</a>
         </div>
         <div className="content">
           <div className="sidebar">

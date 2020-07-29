@@ -24,11 +24,32 @@ input[type='checkbox'] {
     margin-left: 8px;
     font-weight: 300;
     font-size: 18px;
+    flex: 1;
 }
 
 .header__subtitle {
     margin-left: 12px;
     font-weight: 300;
+}
+
+.header__button {
+    display: flex;
+    align-items: center;
+    margin: 8px;
+    padding: 4px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.header__button:hover {
+    border: 1px solid #696969;
+}
+
+.header__button__icon {
+    margin-right: 4px;
 }
 
 .content {
