@@ -1,3 +1,12 @@
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: 600;
+}
+
 .app {
     height: 100vh;
     display: flex;
@@ -46,6 +55,7 @@ input[type='checkbox'] {
 
 .header__button:hover {
     border: 1px solid #696969;
+    text-decoration: none;
 }
 
 .header__button__icon {
@@ -61,6 +71,38 @@ input[type='checkbox'] {
     flex: 0 0 300px;
     background-color: #252525;
     display: flex;
+}
+
+.sidebar__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__footer {
+    padding: 4px 8px;
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+}
+
+.about__me {
+    display: flex;
+    align-items: center;
+}
+
+.about__me svg {
+    margin: 0 2px;
+}
+
+.about__me__social {
+    opacity: .7;
+    margin-left: auto;
+    height: 13px;
+}
+
+.about__me__social:hover {
+    opacity: 1;
 }
 
 .navigate {
@@ -103,6 +145,8 @@ input[type='checkbox'] {
 
 .editors {
     flex: 4;
+    height: calc(100vh - 43px);
+    overflow: hidden;
     background: #252525;
     display: flex;
     flex-direction: column;
@@ -115,6 +159,24 @@ input[type='checkbox'] {
     flex-direction: column;
     background-color: #252525;
     max-width: 500px;
+}
+
+.info__welcome {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 16px;
+}
+
+.info__welcome__title {
+    font-size: 3em;
+    font-weight: 600;
+}
+
+.info__welcome__subtitle {
+    font-size: 1.6em;
 }
 
 .footer {
@@ -181,7 +243,13 @@ input[type='checkbox'] {
     font-size: 1.3em;
     color: #ffffff;
     margin: 5px auto 0 auto;
-    /* cursor: pointer; */
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.benchmark-start__button--center {
+    transform: translateY(25vh) scale(1.2);
+    transition: all 0s;
 }
 
 .benchmark-start__button:hover {

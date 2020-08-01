@@ -21,7 +21,7 @@ function Settings() {
           type="checkbox"
           checked={shouldTranspileSetting}
           onChange={(e) => dispatch(toggleTranspile())} />
-        <label for="transpile" className="checkbox-label"></label>
+        <label htmlFor="transpile" className="checkbox-label"></label>
       </div>
     </>
   )

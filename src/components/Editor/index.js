@@ -28,17 +28,13 @@ function Editor({ name, onChange, defaultValue, disabled }) {
     }
   }, [disabled])
 
-  const style = {
-    width: '100%',
-    height: '33%',
-  }
   return (
     <>
       <div className="editor-tab">
         <img src={jsIcon} className="filelist__item__icon" alt="js icon" />
         <span className="editor-tab__title">{name}</span>
       </div>
-      <div ref={editorElement} style={style} className="editor" />
+      <div ref={editorElement} className="editor" />
     </>
   )
 }
