@@ -40,7 +40,7 @@ class App extends Component {
         <div className="header">
           <img src={logo} className="header__logo" alt="logo" />
           <span className="header__title">JSprf</span>
-          <span className="header__subtitle">Javascript Benchmarking tool</span>
+          {/* <span className="header__subtitle">Javascript Benchmarking tool</span> */}
           <a href="https://github.com/seanreece/jsprf.com" target="_blank" rel="noopener noreferrer" className="header__button"><IoLogoGithub className="header__button__icon"/>GITHUB</a>
         </div>
         <div className="content">
