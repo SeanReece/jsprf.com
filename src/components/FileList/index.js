@@ -22,7 +22,7 @@ function FileList({
       <ul className="filelist">
         <li key="setup-header" className="filelist__item__header">
           <span className="filelist__item__header__title">setup</span>
-          {!setup && <IoMdAdd className="filelist__item__close" onClick={() => onAddSetup()} />}
+          {!setup && <IoMdAdd className="filelist__item__add" onClick={() => onAddSetup()} />}
         </li>
         {setup && (
           <li key="setup" className="filelist__item">
@@ -34,7 +34,7 @@ function FileList({
 
         <li key="scripts-header" className="filelist__item__header">
           <span className="filelist__item__header__title">scripts</span>
-          <IoMdAdd className="filelist__item__close" onClick={() => onAddScript('new')} />
+          <IoMdAdd className="filelist__item__add" onClick={() => onAddScript('new')} />
         </li>
         {Object.values(scripts).map(script => (
           <li key={script.id} className="filelist__item">

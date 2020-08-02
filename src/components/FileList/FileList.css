@@ -48,6 +48,12 @@ ul {
   cursor: pointer;
 }
 
+.filelist__item__add {
+  width: 1.3em;
+  height: 1.3em;
+  cursor: pointer;
+}
+
 .filelist__item__loading {
   height: 13px;
 }
